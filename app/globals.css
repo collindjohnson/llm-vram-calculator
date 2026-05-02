@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-ink: #000000;
+  --color-forest: #262626;
+  --color-green: #16a34a;
+  --color-lime: #4ade80;
+  --color-mint: #dcfce7;
+
+  --color-paper: #ffffff;
+  --color-stone: #e5e5e5;
+  --color-slate: #737373;
+  --color-graphite: #404040;
+  --color-coal: #171717;
+
+  --color-cream: #fef3c7;
+  --color-amber: #f59e0b;
+  --color-burnt: #78350f;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
+
+  --radius-md: 8px;
+  --radius-lg: 12px;
+}
+
+html {
+  background: var(--color-paper);
+  color: var(--color-graphite);
+}
+
+html.dark {
+  background: var(--color-ink);
+  color: var(--color-stone);
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-variant-numeric: tabular-nums;
+}
+
+*:focus-visible {
+  outline: 2px solid var(--color-green);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+html.dark *:focus-visible {
+  outline-color: var(--color-lime);
+}
