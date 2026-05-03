@@ -115,10 +115,10 @@ const VRAM_CONFIG: PairConfig = {
   inputMin: 4,
   inputStep: 1,
   sliderMin: 8,
-  sliderMax: 96,
+  sliderMax: 512,
   sliderStep: 4,
   sliderMinLabel: "8",
-  sliderMaxLabel: "96",
+  sliderMaxLabel: "512",
 };
 
 const PARAMS_CONFIG: PairConfig = {
