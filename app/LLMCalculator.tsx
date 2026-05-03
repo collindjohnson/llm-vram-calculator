@@ -96,7 +96,7 @@ type PairConfig = {
   label: string;
   unit: string;
   inputMin: number;
-  inputMax: number;
+  inputMax?: number;
   inputStep: number;
   sliderMin: number;
   sliderMax: number;
@@ -105,12 +105,14 @@ type PairConfig = {
   sliderMaxLabel: string;
 };
 
+// VRAM has no upper input cap — multi-GPU sums and future hardware can exceed
+// any number we'd pick. Slider stays bounded for ergonomics; the number field
+// accepts anything ≥ inputMin.
 const VRAM_CONFIG: PairConfig = {
   id: "vram",
   label: "GPU VRAM",
   unit: "GB",
   inputMin: 4,
-  inputMax: 200,
   inputStep: 1,
   sliderMin: 8,
   sliderMax: 96,
@@ -176,7 +178,8 @@ const NumberSliderPair = memo(function NumberSliderPair({
 }: PairProps) {
   const commit = (raw: number) => {
     if (Number.isNaN(raw)) return;
-    onChange(clamp(raw, config.inputMin, config.inputMax));
+    const max = config.inputMax ?? Number.POSITIVE_INFINITY;
+    onChange(clamp(raw, config.inputMin, max));
   };
 
   const sliderValue = clamp(value, config.sliderMin, config.sliderMax);
